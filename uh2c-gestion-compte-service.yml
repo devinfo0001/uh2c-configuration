@@ -1,0 +1,74 @@
+info:
+  app:
+    name: uh2c-gestion-compte-service application
+    description: Microservice uh2c api
+  
+# Spring boot actuator
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: /actuator
+      exposure:
+        include: "health,info,prometheus"
+    info:
+      git:
+        mode: full
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    info:
+      enabled: true
+      cache:
+        time-to-live: 300s
+    prometheus:
+      enabled: true
+      cache:
+        time-to-live: 30s
+        
+# Swagger endpoint
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /swagger
+
+# Feign config
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+
+# Profil DEV
+---
+spring:
+  profiles: dev
+
+# Database related properties
+  datasource:
+    url: jdbc:mysql://localhost:3306/pari_location_db?useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate: 
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        
+server:
+  port: 1010  
+   
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+
