@@ -49,7 +49,7 @@ spring:
 
 # Database related properties
   datasource:
-    url: jdbc:mysql://localhost:3306/pari_location_db?useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://localhost:3306/uh2_compte_db?useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
     username: root
     password: root
 
